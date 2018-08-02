@@ -20,6 +20,7 @@ import com.ctmtest.denny.ctmtestapp.data.ImageListObject;
 import com.ctmtest.denny.ctmtestapp.data.RetrofitClient;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 import butterknife.BindView;
@@ -103,6 +104,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
     }
 
     public void sortByLikes(ArrayList<ImageListObject> fetchedArrayList){
-        // 
+        Collections.sort(fetchedArrayList, new Comparator<ImageListObject>() {
+            public int compare(ImageListObject objectOne, ImageListObject objectTwo) {
+                if (objectOne.getLike() == objectTwo.getLike()) {
+                    return 0;
+                }
+                return objectOne.getLike() < objectTwo.getLike() ? -1 : 1;
+            }
+        });
+        responseObjectList = fetchedArrayList;
+        updateImagesView();
     }
 }
