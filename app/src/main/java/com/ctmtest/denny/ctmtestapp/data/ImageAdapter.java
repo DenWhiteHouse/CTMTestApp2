@@ -1,7 +1,9 @@
 package com.ctmtest.denny.ctmtestapp.data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.ctmtest.denny.ctmtestapp.ImageDetails;
 import com.ctmtest.denny.ctmtestapp.MainActivity;
 import com.ctmtest.denny.ctmtestapp.R;
 import com.squareup.picasso.Picasso;
@@ -16,6 +19,11 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
+    //String for Passing Strings via Inent
+    private static  final String IMAGE = "IMAGE_PATH";
+    private static  final String LIKES = "LIKES";
+    private static  final String DATE = "DATES";
+
     private ArrayList<ImageListObject> imagesArrayList;
     private LayoutInflater inflater;
     private Context mContext;
@@ -47,7 +55,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(final ImageAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ImageAdapter.ViewHolder holder, final int position) {
         // inflates the elements into the view
         final ImageListObject imageListObject = imagesArrayList.get(position);
         Uri builtUri = Uri.parse(imageListObject.getImage()).buildUpon().build();
@@ -57,6 +65,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             public void onClick(View view) {
                 //ToastMessage to test onClickListener
                 Toast.makeText(mContext,imageListObject.getLike().toString(),Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(mContext,ImageDetails.class);
+                intent.putExtra(IMAGE,imageListObject.getImage());
+                intent.putExtra(LIKES,imageListObject.getLike());
+                intent.putExtra(DATE,imageListObject.getDate());
             }
         });
     }
