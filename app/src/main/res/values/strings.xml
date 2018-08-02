@@ -5,4 +5,6 @@
     <string name="date_label">Date</string>
     <string name="ImageListAPI_errorr_message">Images are not available now. Please try later.</string>
     <string name="Retrifit_call_error_message">Error calling the server. Please check your connectino and retry.</string>
+
+    <string name="menu_sort_by_likes">Sort by Likes</string>
 </resources>

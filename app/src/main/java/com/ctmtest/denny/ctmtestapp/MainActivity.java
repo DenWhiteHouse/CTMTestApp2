@@ -1,11 +1,14 @@
 package com.ctmtest.denny.ctmtestapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -17,6 +20,7 @@ import com.ctmtest.denny.ctmtestapp.data.ImageListObject;
 import com.ctmtest.denny.ctmtestapp.data.RetrofitClient;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,5 +82,27 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
                 Log.v("Retrofit has failed ", t.getMessage());
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sort_by_likes:
+                sortByLikes(responseObjectList);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void sortByLikes(ArrayList<ImageListObject> fetchedArrayList){
+        // 
     }
 }
