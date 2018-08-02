@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: ADD CHECK onSavedStateInstance and Add List to a Bundle without refetching data
         responseObjectList = new ArrayList<ImageListObject>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
