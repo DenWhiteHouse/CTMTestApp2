@@ -3,4 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="@dimen/image_Main_SquareSide"
     android:layout_height="@dimen/image_Main_SquareSide">
 
+    <ImageView
+        android:id="@+id/imageItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
