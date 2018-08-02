@@ -29,6 +29,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         return viewholder;
     }
 
+    public void setImageArrayList(ArrayList<ImageListObject> imageArrayList){
+        imagesArrayList = imageArrayList;
+    }
+
     @Override
     public int getItemCount() {
         return this.imagesArrayList.size();

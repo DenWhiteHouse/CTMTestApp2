@@ -26,4 +26,8 @@ public class MainActivityPresenter {
     public interface View{
         void updateImagesView();
     }
+
+    public ArrayList<ImageListObject> getJsonArrayList(){
+        return  imageArrayList;
+    }
 }
