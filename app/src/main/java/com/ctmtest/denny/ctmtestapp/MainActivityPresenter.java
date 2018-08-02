@@ -9,6 +9,9 @@ import com.ctmtest.denny.ctmtestapp.data.ImageListObject;
 import java.util.ArrayList;
 
 public class MainActivityPresenter {
+    /*
+    Not used in the second logic for managing the call
+     */
     private ArrayList<ImageListObject> imageArrayList;
     private View view;
     private FetchImages fetchImages;

@@ -47,10 +47,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
         responseObjectList = new ArrayList<ImageListObject>();
 
         if(savedInstanceState == null) {
+            // Use Retrofit to get the JSON from the ENDPOIN
             getImageJSON();
         }
         else
         {
+            //get the Array from Bundle instead of fetching again Data from the Web
             responseObjectList = savedInstanceState.getParcelableArrayList(bundleList);
             updateImagesView();
         }
@@ -58,12 +60,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
 
     @Override
     public void updateImagesView(){
+        //Set the imageAdapter
         imageAdapter = new ImageAdapter(this,mRecyclerView);
         imageAdapter.setImageArrayList(responseObjectList);
         // Set Layout Manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         // TODO: CHANGE LINEARLAYOUT INTO GRIDVIEW
-
+        // Set the RecyclerView
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(imageAdapter);
     }
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
             @Override
             public void onResponse(Call<ArrayList<ImageListObject>> call, Response<ArrayList<ImageListObject>> response) {
                 if (response.isSuccessful()) {
+                    // if the response isSuccessful put the body to responseObjectList and populate the view
                     responseObjectList = response.body();
                     updateImagesView();
                 } else {
@@ -105,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
             case R.id.sort_by_likes:
                 sortByLikes(responseObjectList);
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

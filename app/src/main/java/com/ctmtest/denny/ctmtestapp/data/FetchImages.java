@@ -15,6 +15,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FetchImages {
+    /*
+    Data directly fetched from Main, this class can be used if implemented a CallBack onResponse to communicate when the object has arrived
+    and stop an eventual progressBar
+     */
     private Context context;
     private ArrayList<ImageListObject> responseObjectList;
 
