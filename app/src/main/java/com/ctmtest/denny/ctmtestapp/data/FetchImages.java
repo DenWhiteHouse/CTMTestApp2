@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ctmtest.denny.ctmtestapp.MainActivity;
 import com.ctmtest.denny.ctmtestapp.R;
 
 import java.util.ArrayList;
@@ -16,17 +17,19 @@ import retrofit2.Response;
 public class FetchImages {
     private Context context;
     private ArrayList<ImageListObject> responseObjectList;
+    public ImageAdapter imageAdapter;
+    private MainActivity view;
 
     public FetchImages(Context context){
+        responseObjectList = new ArrayList<ImageListObject>();
         this.context = context;
+        getImageJSON();
+        imageAdapter = new ImageAdapter();
+        view = new MainActivity();
     }
 
 
-    public ArrayList<ImageListObject> getImageJSON() {
-        responseObjectList = new ArrayList<ImageListObject>();
-        /*Getting the JSON Object with Retrofit in first implementation the method show a
-        * toast to the calling activity. Further implementation can implement User Friendly code or a status code return
-         */
+    public void getImageJSON() {
         ImageInterface booksInterface = RetrofitClient.getRetrofitInstance();
         final Call<ArrayList<ImageListObject>> images = booksInterface.getImages();
 
@@ -34,7 +37,8 @@ public class FetchImages {
             @Override
             public void onResponse(Call<ArrayList<ImageListObject>> call, Response<ArrayList<ImageListObject>> response) {
                 if (response.isSuccessful()) {
-                    responseObjectList =response.body();
+                    setResponseObjectList(response.body());
+                    view.updateImagesView();
                 } else {
                     responseObjectList = null;
                     Toast.makeText(context, R.string.ImageListAPI_errorr_message, Toast.LENGTH_SHORT).show();
@@ -48,6 +52,14 @@ public class FetchImages {
                 Log.v("Retrofit has failed ", t.getMessage());
             }
         });
+    }
+
+    public ArrayList<ImageListObject> getResponseObjectList(){
         return responseObjectList;
+    }
+
+    public void setResponseObjectList(ArrayList<ImageListObject> arrayList){
+        responseObjectList = arrayList;
+        imageAdapter.setImageArrayList(responseObjectList);
     }
 }

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
     @BindView(R.id.imagesGridRecylerViev)
     RecyclerView mRecyclerView;
     private MainActivityPresenter presenter;
-    ImageAdapter imageAdapter;
+    FetchImages fetchImages = new FetchImages(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +25,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         presenter = new MainActivityPresenter(this,this);
-        // Call the updateImagesView Method to set the Adapter and Populate the View
-        updateImagesView();
     }
 
     @Override
     public void updateImagesView(){
-        imageAdapter = new ImageAdapter();
-        //set the objectArrayList from the presenter to the RecyclerAdapter
-        imageAdapter.setImageArrayList(presenter.getJsonArrayList());
         // Set Layout Manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(imageAdapter);
+        mRecyclerView.setAdapter(fetchImages.imageAdapter);
     }
 }

@@ -16,7 +16,7 @@ public class MainActivityPresenter {
     public MainActivityPresenter(View view, Context context){
         this.view=view;
         fetchImages = new FetchImages(context);
-        imageArrayList = fetchImages.getImageJSON();
+        imageArrayList = fetchImages.getResponseObjectList();
     }
 
     public int getImagesListSize(){
