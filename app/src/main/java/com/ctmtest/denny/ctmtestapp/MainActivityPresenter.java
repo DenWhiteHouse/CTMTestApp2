@@ -18,4 +18,6 @@ public class MainActivityPresenter {
         fetchImages = new FetchImages(view.getContext());
         imageArrayList = fetchImages.getImageJSON();
     }
+
+    public interface showImages{}
 }
