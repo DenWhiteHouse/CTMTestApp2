@@ -14,10 +14,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FetchImages {
+    private Context context;
 
-    public void getBookJSON(final Context context) {
+    public FetchImages(Context context){
+        this.context = context;
+    }
+
+
+    public void getImageJSON() {
         /*Getting the JSON Object with Retrofit in first implementation the method show a
-        * toast to the calling activity. Further implementation can implement User Friendly code or a status code return 
+        * toast to the calling activity. Further implementation can implement User Friendly code or a status code return
          */
         ImageInterface booksInterface = RetrofitClient.getRetrofitInstance();
         final Call<ImageListObject> image = booksInterface.getImages();
