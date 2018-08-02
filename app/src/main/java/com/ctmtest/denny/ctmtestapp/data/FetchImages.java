@@ -1,5 +1,6 @@
 package com.ctmtest.denny.ctmtestapp.data;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -14,8 +15,10 @@ import retrofit2.Response;
 
 public class FetchImages {
 
-    public void getBookJSON() {
-        //Getting the JSON Object with Retrofit
+    public void getBookJSON(final Context context) {
+        /*Getting the JSON Object with Retrofit in first implementation the method show a
+        * toast to the calling activity. Further implementation can implement User Friendly code or a status code return 
+         */
         ImageInterface booksInterface = RetrofitClient.getRetrofitInstance();
         final Call<ImageListObject> image = booksInterface.getImages();
 
@@ -24,13 +27,13 @@ public class FetchImages {
             public void onResponse(Call<ImageListObject> call, Response<ImageListObject> response) {
                 if (response.isSuccessful()) {
                 } else {
-                    //TODO: show messagge error
+                    Toast.makeText(context, R.string.ImageListAPI_errorr_message, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ImageListObject> call, Throwable t) {
-                //TODO: add error message
+                Toast.makeText(context, R.string.ImageListAPI_errorr_message, Toast.LENGTH_SHORT).show();
                 Log.v("Retrofit has failed ", t.getMessage());
             }
         });
