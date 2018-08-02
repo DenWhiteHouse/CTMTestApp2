@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ctmtest.denny.ctmtestapp.MainActivity;
 import com.ctmtest.denny.ctmtestapp.R;
@@ -46,11 +47,18 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ImageAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ImageAdapter.ViewHolder holder, int position) {
         // inflates the elements into the view
-        ImageListObject imageListObject = imagesArrayList.get(position);
+        final ImageListObject imageListObject = imagesArrayList.get(position);
         Uri builtUri = Uri.parse(imageListObject.getImage()).buildUpon().build();
         Picasso.with(mContext).load(builtUri).into(holder.mImageView);
+        holder.mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //ToastMessage to test onClickListener
+                Toast.makeText(mContext,imageListObject.getLike().toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

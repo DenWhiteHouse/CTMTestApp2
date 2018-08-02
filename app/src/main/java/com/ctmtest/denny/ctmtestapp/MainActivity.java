@@ -2,6 +2,7 @@ package com.ctmtest.denny.ctmtestapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
         imageAdapter.setImageArrayList(responseObjectList);
         // Set Layout Manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // TODO: CHANGE LINEARLAYOUT INTO GRIDVIEW
+
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(imageAdapter);
     }
