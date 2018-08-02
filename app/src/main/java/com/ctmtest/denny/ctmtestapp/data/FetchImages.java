@@ -17,15 +17,11 @@ import retrofit2.Response;
 public class FetchImages {
     private Context context;
     private ArrayList<ImageListObject> responseObjectList;
-    public ImageAdapter imageAdapter;
-    private MainActivity view;
 
     public FetchImages(Context context){
         responseObjectList = new ArrayList<ImageListObject>();
         this.context = context;
         getImageJSON();
-        imageAdapter = new ImageAdapter();
-        view = new MainActivity();
     }
 
 
@@ -38,7 +34,6 @@ public class FetchImages {
             public void onResponse(Call<ArrayList<ImageListObject>> call, Response<ArrayList<ImageListObject>> response) {
                 if (response.isSuccessful()) {
                     setResponseObjectList(response.body());
-                    view.updateImagesView();
                 } else {
                     responseObjectList = null;
                     Toast.makeText(context, R.string.ImageListAPI_errorr_message, Toast.LENGTH_SHORT).show();
@@ -60,6 +55,10 @@ public class FetchImages {
 
     public void setResponseObjectList(ArrayList<ImageListObject> arrayList){
         responseObjectList = arrayList;
-        imageAdapter.setImageArrayList(responseObjectList);
+    }
+
+    public ArrayList<ImageListObject> getArrayFromCall(){
+        getImageJSON();
+        return responseObjectList;
     }
 }
