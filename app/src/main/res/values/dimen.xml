@@ -2,4 +2,5 @@
 <resources>
     <dimen name="image_item_heigh">200dp</dimen>
     <dimen name="image_Main_SquareSide">120dp</dimen>
+    <dimen name="basic_padding">16dp</dimen>
 </resources>

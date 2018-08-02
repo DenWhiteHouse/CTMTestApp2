@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
     //String for Passing Strings via Inent
-    private static  final String IMAGE = "IMAGE_PATH";
-    private static  final String LIKES = "LIKES";
-    private static  final String DATE = "DATES";
+    public static final String IMAGE = "IMAGE_PATH";
+    public static final String LIKES = "LIKES";
+    public static final String DATE = "DATES";
 
     private ArrayList<ImageListObject> imagesArrayList;
     private LayoutInflater inflater;
@@ -67,8 +67,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 Toast.makeText(mContext,imageListObject.getLike().toString(),Toast.LENGTH_SHORT).show();
                 Intent intent= new Intent(mContext,ImageDetails.class);
                 intent.putExtra(IMAGE,imageListObject.getImage());
-                intent.putExtra(LIKES,imageListObject.getLike());
+                intent.putExtra(LIKES,imageListObject.getLike().toString());
                 intent.putExtra(DATE,imageListObject.getDate());
+                mContext.startActivity(intent);
             }
         });
     }
