@@ -2,15 +2,28 @@ package com.ctmtest.denny.ctmtestapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.GridView;
 
 import com.ctmtest.denny.ctmtestapp.data.FetchImages;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends AppCompatActivity implements MainActivityPresenter.View{
+    @BindView(R.id.GridView)
+    GridView mainGrid;
+    private MainActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FetchImages imageFetcher;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        presenter = new MainActivityPresenter(this,this);
+    }
+
+    @Override
+    public void updateImagesView(){
+        //Override the Presenter Method by populating the Grid of the view
     }
 }

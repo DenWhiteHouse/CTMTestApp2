@@ -13,11 +13,13 @@ public class MainActivityPresenter {
     private View view;
     private FetchImages fetchImages;
 
-    public MainActivityPresenter(View view){
+    public MainActivityPresenter(View view, Context context){
         this.view=view;
-        fetchImages = new FetchImages(view.getContext());
+        fetchImages = new FetchImages(context);
         imageArrayList = fetchImages.getImageJSON();
     }
 
-    public interface showImages{}
+    public interface View{
+        void updateImagesView();
+    }
 }
