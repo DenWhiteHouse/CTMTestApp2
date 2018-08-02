@@ -16,7 +16,10 @@ import com.ctmtest.denny.ctmtestapp.MainActivity;
 import com.ctmtest.denny.ctmtestapp.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
     //String for Passing Strings via Inent
@@ -63,12 +66,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         holder.mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ToastMessage to test onClickListener
-                Toast.makeText(mContext,imageListObject.getLike().toString(),Toast.LENGTH_SHORT).show();
+                String stringDate = imageListObject.getDate();
+                //TODO: handle format exeption
+                /*
+                DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
+                Date date = (Date)formatter.parse(parsedDate);
+                */
                 Intent intent= new Intent(mContext,ImageDetails.class);
                 intent.putExtra(IMAGE,imageListObject.getImage());
                 intent.putExtra(LIKES,imageListObject.getLike().toString());
-                intent.putExtra(DATE,imageListObject.getDate());
+                intent.putExtra(DATE,stringDate);
                 mContext.startActivity(intent);
             }
         });
