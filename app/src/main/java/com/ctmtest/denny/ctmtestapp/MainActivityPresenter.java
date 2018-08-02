@@ -19,6 +19,10 @@ public class MainActivityPresenter {
         imageArrayList = fetchImages.getImageJSON();
     }
 
+    public int getImagesListSize(){
+        return imageArrayList.size();
+    }
+
     public interface View{
         void updateImagesView();
     }

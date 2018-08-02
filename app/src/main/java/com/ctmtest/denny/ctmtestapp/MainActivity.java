@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
 
     @Override
     public void updateImagesView(){
-        //Override the Presenter Method by populating the Grid of the view
+        for(int i= 0;i<presenter.getImagesListSize();i++){
+        }
     }
 }
