@@ -26,11 +26,11 @@ public class FetchImages {
         * toast to the calling activity. Further implementation can implement User Friendly code or a status code return
          */
         ImageInterface booksInterface = RetrofitClient.getRetrofitInstance();
-        final Call<ImageListObject> image = booksInterface.getImages();
+        final Call<ArrayList<ImageListObject>> images = booksInterface.getImages();
 
-        image.enqueue(new Callback<ImageListObject>() {
+        images.enqueue(new Callback<ArrayList<ImageListObject>>() {
             @Override
-            public void onResponse(Call<ImageListObject> call, Response<ImageListObject> response) {
+            public void onResponse(Call<ArrayList<ImageListObject>> call, Response<ArrayList<ImageListObject>> response) {
                 if (response.isSuccessful()) {
                 } else {
                     Toast.makeText(context, R.string.ImageListAPI_errorr_message, Toast.LENGTH_SHORT).show();
@@ -38,7 +38,7 @@ public class FetchImages {
             }
 
             @Override
-            public void onFailure(Call<ImageListObject> call, Throwable t) {
+            public void onFailure(Call<ArrayList<ImageListObject>> call, Throwable t) {
                 Toast.makeText(context, R.string.ImageListAPI_errorr_message, Toast.LENGTH_SHORT).show();
                 Log.v("Retrofit has failed ", t.getMessage());
             }
