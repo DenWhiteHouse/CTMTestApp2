@@ -12,9 +12,5 @@ public class MainActivity extends AppCompatActivity {
         FetchImages imageFetcher;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // testing the Retrofit call
-        imageFetcher = new FetchImages(this);
-        imageFetcher.getImageJSON();
     }
 }
