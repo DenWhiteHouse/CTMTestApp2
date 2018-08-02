@@ -67,7 +67,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 String stringDate = imageListObject.getDate();
-                //TODO: handle format exeption
+                //TODO: handle format exception
                 /*
                 DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
                 Date date = (Date)formatter.parse(parsedDate);

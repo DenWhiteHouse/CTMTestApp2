@@ -1,6 +1,7 @@
 package com.ctmtest.denny.ctmtestapp;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,6 +31,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements MainActivityPresenter.View{
+    private static final String bundleList ="LIST";
     @BindView(R.id.imagesGridRecylerViev)
     RecyclerView mRecyclerView;
     private MainActivityPresenter presenter;
@@ -39,13 +41,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO: ADD CHECK onSavedStateInstance and Add List to a Bundle without refetching data
-        responseObjectList = new ArrayList<ImageListObject>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-       // presenter = new MainActivityPresenter(this,this);
-        getImageJSON();
+        responseObjectList = new ArrayList<ImageListObject>();
+
+        if(savedInstanceState == null) {
+            getImageJSON();
+        }
+        else
+        {
+            responseObjectList = savedInstanceState.getParcelableArrayList(bundleList);
+            updateImagesView();
+        }
     }
 
     @Override
@@ -114,5 +122,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityPrese
         });
         responseObjectList = fetchedArrayList;
         updateImagesView();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if (responseObjectList != null) {
+            outState.putParcelableArrayList(bundleList, responseObjectList);
+            super.onSaveInstanceState(outState);
+        }
     }
 }
